@@ -23,7 +23,17 @@ const sendBtn = document.getElementById("send-btn");
 function addMessageToChat(sender, message) {
     const messageElement = document.createElement("div");
     messageElement.className = `p-2 my-1 rounded-lg shadow ${sender === "user" ? "bg-blue-500 text-white self-end" : "bg-gray-200 text-gray-800 self-start"}`;
-    messageElement.textContent = message;
+
+    // HTML içerikleri temizle
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = message;
+    const plainText = tempDiv.textContent || tempDiv.innerText || "";
+
+    // Uzun mesajları kısalt
+    const maxLength = 300; // Görüntülenecek maksimum karakter sayısı
+    const displayText = plainText.length > maxLength ? plainText.substring(0, maxLength) + " ...devamını oku" : plainText;
+
+    messageElement.textContent = displayText;
     chatWindow.appendChild(messageElement);
     chatWindow.scrollTop = chatWindow.scrollHeight;
 }
