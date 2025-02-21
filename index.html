@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js"></script>
+    <script src="app.js" defer></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Container -->
+    <div class="flex items-center justify-center h-screen">
+        <div class="w-full max-w-md p-6 bg-white rounded-2xl shadow-lg">
+            <!-- Header -->
+            <h1 class="text-2xl font-bold mb-4 text-center text-gray-800">AI Chatbot</h1>
+            
+            <!-- Chat Window -->
+            <div id="chat-window" class="h-64 overflow-y-auto mb-4 p-3 bg-gray-50 rounded-lg shadow-inner">
+                <!-- Chat messages will appear here -->
+            </div>
+
+            <!-- User Input -->
+            <div class="flex items-center">
+                <input id="user-input" type="text" placeholder="Sorunuzu buraya yazın..." 
+                       class="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                <button id="send-btn" class="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600">
+                    Gönder
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
