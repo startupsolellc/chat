@@ -63,20 +63,20 @@
     }
 
     // Firestore'dan Veri Çek ve Yanıtla
-    async function getResponseFromFirestore(userMessage) {
-        addMessageToChat("user", userMessage);
-        const querySnapshot = await db.collection("blogPosts").get();
-        
-        let response = "Üzgünüm, bu konuda bir cevabım yok.";
+async function getResponseFromFirestore(userMessage) {
+    addMessageToChat("user", userMessage);
+    const querySnapshot = await db.collection("blog_articles").get(); // Güncellenmiş koleksiyon adı
+    
+    let response = "Üzgünüm, bu konuda bir cevabım yok.";
 
-        querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            if (data.content.toLowerCase().includes(userMessage.toLowerCase())) {
-                response = data.content;
-            }
-        });
+    querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data.content && data.content.toLowerCase().includes(userMessage.toLowerCase())) {
+            response = data.content;
+        }
+    });
 
-        addMessageToChat("bot", response);
+    addMessageToChat("bot", response);
     }
 
     // Gönder Butonu Tıklama Olayı
