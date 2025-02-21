@@ -10,7 +10,7 @@ const firebaseConfig = {
 
 };
 
-// Firebase Başlatma
+// Firebase'i Başlat
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
@@ -31,13 +31,13 @@ function addMessageToChat(sender, message) {
 // Firestore'dan Veri Çek ve Yanıtla
 async function getResponseFromFirestore(userMessage) {
     addMessageToChat("user", userMessage);
-    const querySnapshot = await db.collection("blogPosts").get();
+    const querySnapshot = await db.collection("blog_articles").get();
     
     let response = "Üzgünüm, bu konuda bir cevabım yok.";
 
     querySnapshot.forEach((doc) => {
         const data = doc.data();
-        if (data.content.toLowerCase().includes(userMessage.toLowerCase())) {
+        if (data.content && data.content.toLowerCase().includes(userMessage.toLowerCase())) {
             response = data.content;
         }
     });
